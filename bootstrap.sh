@@ -68,4 +68,4 @@ sed -i -e "s/%%MESOS_ZK%%/${ZK}/" \
   -e "s/%%TIMEOUT%%/${TIMEOUT}/" \
   $MESOS_DNS_PATH/config.json 
 
-exec $MESOS_DNS_PATH/mesos-dns -config=$MESOS_DNS_PATH/config.json
+exec $MESOS_DNS_PATH/mesos-dns -config=$MESOS_DNS_PATH/config.json -v=2
