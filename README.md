@@ -1,5 +1,5 @@
 # Mesos DNS
-This images contains the latest release of Mesos DNS (v0.3.0 as of 2015-10-07) on a minimal Alpine Linux base image. The overall size is just 27.5MB.
+This images contains the latest release of Mesos DNS (v0.4.0-pre as of 2015-10-08) on a minimal Alpine Linux base image. The overall size is just 27.5MB.
 
 ## Configuration options
 
