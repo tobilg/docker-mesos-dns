@@ -15,6 +15,10 @@ The following options can be passed to the Docker image:
 
 A further description of the Mesos DNS configuration parameters can be found on the [reference docs][conf].
 
+### DNS configuration on the host
+As Mesos DNS needs an nameserver entry which points to the own host (the host which Mesos DNS is running on) in the `/etc/resolv.conf` at the begining of the file (see ["Slave Setup"][docs]), it is necessary to prepare this entry before Mesos DNS can be run via Docker.
+The "pinning" of the image to a host is done via `hostname` constraints when running via Marathon. 
+
 ## Running
 The image can be run either via Marathon (recommended!), or via command line on the Mesos Slave's Docker host.
 
@@ -51,11 +55,14 @@ curl -XPOST 'http://192.168.0.100:8080/v2/apps' -d '{
 docker run -d \
   --net=host \
   -e MESOS_ZK=zk://192.168.0.100:2181/mesos \
-  -e LOCAL_IP=$(/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}') \
+  -e LOCAL_IP=$(/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}') \
   -e MESOS_DNS_EXTERNAL_SERVERS=8.8.8.8,8.8.4.4 \
   --name dns \
   -t tobilg/mesos-dns
 ```
+
+**Note:**
+Use the correct network interface name, in our example it's `eth0`.
 
 [docs]: <http://mesosphere.github.io/mesos-dns/docs/>
 [conf]: <http://mesosphere.github.io/mesos-dns/docs/configuration-parameters.html>
