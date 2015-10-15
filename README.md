@@ -5,7 +5,7 @@ This images contains the latest release of Mesos DNS (v0.4.0 as of 2015-10-12) o
 
 The following options can be passed to the Docker image:
 
-- `LOCAL_IP`: The IP address the host has which should run Mesos DNS (**mandatory**)
+- `LOCAL_IP`: The IP address the host has which should run Mesos DNS (**mandatory, if your slave's hostname is not resolvable**)
 - `MESOS_ZK`: The ZooKeeper connection string for the Mesos Master(s), e.g. `zk://192.168.0.100:2181/mesos`  (**mandatory**)
 - `MESOS_DNS_EXTERNAL_SERVERS`: A comma-separated list of external DNS servers, e.g. `8.8.8.8,8.8.4.4` for the Google DNS servers. If not used, ``8.8.8.8` will be the default external DNS server.
 - `MESOS_DNS_HTTP_ENABLED`: Whether the Mesos DNS web interface should be started. If not used or passed a `true` value, it will be disabled.
