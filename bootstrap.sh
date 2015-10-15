@@ -12,8 +12,9 @@ fi
 
 # Check for local ip address parameter
 if [ -z ${LOCAL_IP+x} ]; then
-  echo "Please supply at least a local IP address!"
-  exit 1
+  IP=$(nslookup `hostname -f` | tail -1 | head -2 | awk '{print $3}')
+else
+  IP="${LOCAL_IP}"
 fi
 
 # Check for EXTERNAL_DNS_SERVERS parameter

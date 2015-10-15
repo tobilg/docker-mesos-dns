@@ -42,10 +42,38 @@ curl -XPOST 'http://192.168.0.100:8080/v2/apps' -d '{
         },
         "type": "DOCKER"
     },
-    "cpus": 0.5,
-    "mem": 1024,
+    "cpus": 0.2,
+    "mem": 128,
     "instances": 1,
 	"constraints": [["hostname", "CLUSTER", "192.168.0.100"]]
+}'
+```
+
+Also, if you'd want to run Mesos DNS once on every slave available in the cluster, consider the following:
+
+* Make sure that the slave's hostnames are resolvable via `nslookup ``hostname -f```)
+* Set the `instances` property to the number of current Mesos slaves in the cluster
+
+If everything is set, run this:
+
+```
+curl -XPOST 'http://192.168.0.100:8080/v2/apps' -d '{
+    "id": "mesos-dns",
+    "env": {
+        "MESOS_ZK": "zk://192.168.0.100:2181/mesos",
+        "MESOS_DNS_EXTERNAL_SERVERS": "8.8.8.8,8.8.4.4"
+    },
+    "container": {
+        "docker": {
+            "image": "tobilg/mesos-dns",
+            "network": "HOST"
+        },
+        "type": "DOCKER"
+    },
+    "cpus": 0.2,
+    "mem": 128,
+    "instances": 1,
+	"constraints": [["hostname", "UNIQUE"]]
 }'
 ```
 
