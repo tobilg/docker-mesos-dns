@@ -59,6 +59,13 @@ else
   TIMEOUT="${MESOS_DNS_TIMEOUT}"
 fi
 
+# Check for vervose logging settings
+if [ -z ${VERBOSITY_LEVEL+x} ]; then
+  VERBOSITY=""
+else
+  VERBOSITY="-v=${VERBOSITY_LEVEL}"
+fi
+
 # Replace network interface name
 sed -i -e "s/%%MESOS_ZK%%/${ZK}/" \
   -e "s/%%IP%%/${LOCAL_IP}/" \
@@ -69,4 +76,4 @@ sed -i -e "s/%%MESOS_ZK%%/${ZK}/" \
   -e "s/%%TIMEOUT%%/${TIMEOUT}/" \
   $MESOS_DNS_PATH/config.json 
 
-exec $MESOS_DNS_PATH/mesos-dns -config=$MESOS_DNS_PATH/config.json -v=2
+exec $MESOS_DNS_PATH/mesos-dns -config=$MESOS_DNS_PATH/config.json $VERBOSITY

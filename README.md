@@ -12,6 +12,7 @@ The following options can be passed to the Docker image:
 - `MESOS_DNS_HTTP_PORT`: The HTTP port of the Mesos DNS web interface. If not defined (and the web interface is enabled), `8123` will be used as port.
 - `MESOS_DNS_REFRESH`: The frequency at which Mesos-DNS updates DNS records based on information retrieved from the Mesos master. The default value is 60 seconds.
 - `MESOS_DNS_TIMEOUT`: The timeout threshold, in seconds, for connections and requests to external DNS requests. The default value is 5 seconds.
+- `VERBOSITY_LEVEL`: The [level of verbosity][verbose] (can be 1 or 2). If not specified, no verbose logs will be written.
 
 A further description of the Mesos DNS configuration parameters can be found on the [reference docs][conf].
 
@@ -28,7 +29,7 @@ You should start the Mesos DNS per recommandation of the [official docs][docs] v
 a sample configuration would be the following:
 
 ```
-curl -XPOST 'http://192.168.0.100:8080/v2/apps' -d '{
+curl -XPOST 'http://192.168.0.100:8080/v2/apps' -H 'Content-Type: application/json' -d '{
     "id": "mesos-dns-100",
     "env": {
         "LOCAL_IP": "192.168.0.100",
@@ -94,3 +95,4 @@ Use the correct network interface name, in our example it's `eth0`.
 
 [docs]: <http://mesosphere.github.io/mesos-dns/docs/>
 [conf]: <http://mesosphere.github.io/mesos-dns/docs/configuration-parameters.html>
+[verbose]: <http://mesosphere.github.io/mesos-dns/docs/faq.html>
