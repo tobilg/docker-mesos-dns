@@ -49,7 +49,7 @@ fi
 if [ -z ${MESOS_DNS_REFRESH+x} ]; then
   REFRESH="60"
 else
-  REFRESH="${REFRESH}"
+  REFRESH="${MESOS_DNS_REFRESH}"
 fi
 
 # Check for TIMEOUT parameter
