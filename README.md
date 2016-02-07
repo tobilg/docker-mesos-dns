@@ -12,6 +12,7 @@ The following options can be passed to the Docker image:
 - `MESOS_DNS_HTTP_PORT`: The HTTP port of the Mesos DNS web interface. If not defined (and the web interface is enabled), `8123` will be used as port.
 - `MESOS_DNS_REFRESH`: The frequency at which Mesos-DNS updates DNS records based on information retrieved from the Mesos master. The default value is 60 seconds.
 - `MESOS_DNS_TIMEOUT`: The timeout threshold, in seconds, for connections and requests to external DNS requests. The default value is 5 seconds.
+- `MESOS_IP_SOURCES`: A fallback list of IP sources for task records, sorted by priority. If you use Docker, and enable the netinfo IPSource, it may cause tasks to become unreachable, because after Mesos 0.25, the Docker executor publishes the container's internal IP in NetworkInfo. The default value is: `["netinfo", "mesos", "host"]`. See the [reference docs][conf] for more info.
 - `VERBOSITY_LEVEL`: The [level of verbosity][verbose] (can be 1 or 2). If not specified, no verbose logs will be written.
 
 A further description of the Mesos DNS configuration parameters can be found on the [reference docs][conf].

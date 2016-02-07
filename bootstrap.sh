@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#set -ex
-
 # Check for MESOS_ZK parameter
 if [ -z ${MESOS_ZK+x} ]; then
   echo "Please supply at least a Zookeeper connection string!"
@@ -29,6 +27,20 @@ else
   # Produce correct env variables for DNS servers
   IFS=','
   DNS_SERVERS="[${DNS_SERVER_STRINGS[*]}]"
+fi
+
+# Check for MESOS_IP_SOURCES parameter
+if [ -z ${MESOS_IP_SOURCES+x} ]; then
+  IP_SOURCES="[\"netinfo\", \"host\", \"mesos\"]"
+else
+  IFS=',' read -a ipsources <<< "$MESOS_IP_SOURCES"
+  for index in "${!ipsources[@]}"
+  do
+    IP_SOURCES_STRINGS[(index+1)]="\"${ipsources[index]}\""
+  done
+  # Produce correct env variables for IP sources
+  IFS=','
+  IP_SOURCES="[${IP_SOURCES_STRINGS[*]}]"
 fi
 
 # Check for HTTP_PORT parameter
@@ -72,6 +84,7 @@ sed -i -e "s/%%MESOS_ZK%%/${ZK}/" \
   -e "s/%%HTTP_PORT%%/${PORT}/" \
   -e "s/%%EXTERNAL_DNS_SERVERS%%/${DNS_SERVERS}/" \
   -e "s/%%HTTP_ON%%/${HTTP_ENABLED}/" \
+  -e "s/%%IP_SOURCES%%/${IP_SOURCES}/" \
   -e "s/%%REFRESH%%/${REFRESH}/" \
   -e "s/%%TIMEOUT%%/${TIMEOUT}/" \
   $MESOS_DNS_PATH/config.json 

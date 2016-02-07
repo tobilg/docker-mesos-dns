@@ -17,5 +17,5 @@
   "SOARetry":   600,
   "SOAExpire":  86400,
   "SOAMinttl": %%REFRESH%%,
-  "IPSources": ["netinfo", "mesos", "host"]
+  "IPSources": %%IP_SOURCES%%
 }
