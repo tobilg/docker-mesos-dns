@@ -1,5 +1,5 @@
 FROM sillelien/base-alpine:0.10
-MAINTAINER tobilg <fb.tools.github@gmail.com>
+MAINTAINER tobilg <tobilg@gmail.com>
 
 ENV MESOS_DNS_VERSION v0.5.2
 ENV MESOS_DNS_FILENAME mesos-dns-$MESOS_DNS_VERSION-linux-amd64
