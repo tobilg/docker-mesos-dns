@@ -17,7 +17,7 @@ fi
 
 # Check for EXTERNAL_DNS_SERVERS parameter
 if [ -z ${MESOS_DNS_EXTERNAL_SERVERS+x} ]; then
-  DNS_SERVERS="8.8.8.8"
+  DNS_SERVERS="[\"8.8.8.8\",\"8.8.4.4\"]"
 else
   IFS=',' read -a dnshosts <<< "$MESOS_DNS_EXTERNAL_SERVERS"
   for index in "${!dnshosts[@]}"
