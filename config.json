@@ -2,7 +2,7 @@
   "zk": "%%MESOS_ZK%%",
   "refreshSeconds": %%REFRESH%%,
   "ttl": %%REFRESH%%,
-  "domain": "mesos",
+  "domain": "%%DOMAIN%%",
   "port": 53,
   "resolvers": %%EXTERNAL_DNS_SERVERS%%,
   "timeout": %%TIMEOUT%%, 

@@ -29,6 +29,13 @@ else
   DNS_SERVERS="[${DNS_SERVER_STRINGS[*]}]"
 fi
 
+# Check for DOMAIN parameter
+if [ -z ${MESOS_DNS_DOMAIN+x} ]; then
+  DOMAIN="mesos"
+else
+  DOMAIN="${MESOS_DNS_DOMAIN}"
+fi
+
 # Check for MESOS_IP_SOURCES parameter
 if [ -z ${MESOS_IP_SOURCES+x} ]; then
   IP_SOURCES="[\"netinfo\", \"host\", \"mesos\"]"
@@ -83,6 +90,7 @@ sed -i -e "s/%%MESOS_ZK%%/${ZK}/" \
   -e "s/%%IP%%/${LOCAL_IP}/" \
   -e "s/%%HTTP_PORT%%/${PORT}/" \
   -e "s/%%EXTERNAL_DNS_SERVERS%%/${DNS_SERVERS}/" \
+  -e "s/%%DOMAIN%%/${DOMAIN}/" \
   -e "s/%%HTTP_ON%%/${HTTP_ENABLED}/" \
   -e "s/%%IP_SOURCES%%/${IP_SOURCES}/" \
   -e "s/%%REFRESH%%/${REFRESH}/" \
