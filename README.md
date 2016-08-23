@@ -30,7 +30,7 @@ The image can be run either via Marathon (recommended!), or via command line on 
 You should start the Mesos DNS per recommandation of the [official docs][docs] via Marathon for each slave. This can be done via `constraints` in the application's JSON definition (see below). If you're running your Mesos Master/Slave as well as Marathon on IP address `192.168.0.100`,
 a sample configuration would be the following:
 
-```
+```bash
 curl -XPOST 'http://192.168.0.100:8080/v2/apps' -H 'Content-Type: application/json' -d '{
     "id": "mesos-dns-100",
     "env": {
@@ -59,7 +59,7 @@ Also, if you'd want to run Mesos DNS once on every slave available in the cluste
 
 If everything is set, run this:
 
-```
+```bash
 curl -XPOST 'http://192.168.0.100:8080/v2/apps' -d '{
     "id": "mesos-dns",
     "env": {
@@ -82,7 +82,7 @@ curl -XPOST 'http://192.168.0.100:8080/v2/apps' -d '{
 
 ### Via command line
 
-```
+```bash
 docker run -d \
   --net=host \
   -e MESOS_ZK=zk://192.168.0.100:2181/mesos \
