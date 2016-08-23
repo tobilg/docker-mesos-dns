@@ -7,11 +7,12 @@ The following options can be passed to the Docker image:
 
 - `LOCAL_IP`: The IP address the host has which should run Mesos DNS (**mandatory, if your slave's hostname is not resolvable**)
 - `MESOS_ZK`: The ZooKeeper connection string for the Mesos Master(s), e.g. `zk://192.168.0.100:2181/mesos`  (**mandatory**)
-- `MESOS_DNS_EXTERNAL_SERVERS`: A comma-separated list of external DNS servers, e.g. `8.8.8.8,8.8.4.4` for the Google DNS servers. If not used, ``8.8.8.8` will be the default external DNS server.
+- `MESOS_DNS_EXTERNAL_SERVERS`: A comma-separated list of external DNS servers, e.g. `8.8.8.8,8.8.4.4` for the Google DNS servers. If not used, `8.8.8.8` will be the default external DNS server.
 - `MESOS_DNS_HTTP_ENABLED`: Whether the Mesos DNS web interface should be started. If not used or passed a `true` value, it will be disabled.
 - `MESOS_DNS_HTTP_PORT`: The HTTP port of the Mesos DNS web interface. If not defined (and the web interface is enabled), `8123` will be used as port.
 - `MESOS_DNS_REFRESH`: The frequency at which Mesos-DNS updates DNS records based on information retrieved from the Mesos master. The default value is 60 seconds.
 - `MESOS_DNS_TIMEOUT`: The timeout threshold, in seconds, for connections and requests to external DNS requests. The default value is 5 seconds.
+- `MESOS_DNS_DOMAIN`: The TLD/domain name to use for the internal service discovery. Default value is `mesos`.
 - `MESOS_IP_SOURCES`: A fallback list of IP sources for task records, sorted by priority. If you use Docker, and enable the netinfo IPSource, it may cause tasks to become unreachable, because after Mesos 0.25, the Docker executor publishes the container's internal IP in NetworkInfo. The default value is: `["netinfo", "mesos", "host"]`. See the [reference docs][conf] for more info.
 - `VERBOSITY_LEVEL`: The [level of verbosity][verbose] (can be 1 or 2). If not specified, no verbose logs will be written.
 
