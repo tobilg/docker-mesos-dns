@@ -40,7 +40,7 @@ curl -XPOST 'http://192.168.0.100:8080/v2/apps' -H 'Content-Type: application/js
     },
     "container": {
         "docker": {
-            "image": "tobilg/mesos-dns:0.6.0",
+            "image": "tobilg/mesos-dns:v0.6.0",
             "network": "HOST"
         },
         "type": "DOCKER"
@@ -68,7 +68,7 @@ curl -XPOST 'http://192.168.0.100:8080/v2/apps' -d '{
     },
     "container": {
         "docker": {
-            "image": "tobilg/mesos-dns:0.6.0",
+            "image": "tobilg/mesos-dns:v0.6.0",
             "network": "HOST"
         },
         "type": "DOCKER"
