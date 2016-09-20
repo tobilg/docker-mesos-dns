@@ -1,5 +1,5 @@
 # Mesos DNS
-This images contains the latest release of Mesos DNS (v0.5.2 as of 2016-04-06) on a minimal Alpine Linux base image. The overall size is just 27.5MB.
+This images contains the latest release of Mesos DNS (v0.6.0 as of 2016-09-19) on a minimal Alpine Linux base image. The overall size is just 27.5MB.
 
 ## Configuration options
 
@@ -40,7 +40,7 @@ curl -XPOST 'http://192.168.0.100:8080/v2/apps' -H 'Content-Type: application/js
     },
     "container": {
         "docker": {
-            "image": "tobilg/mesos-dns",
+            "image": "tobilg/mesos-dns:0.6.0",
             "network": "HOST"
         },
         "type": "DOCKER"
@@ -68,7 +68,7 @@ curl -XPOST 'http://192.168.0.100:8080/v2/apps' -d '{
     },
     "container": {
         "docker": {
-            "image": "tobilg/mesos-dns",
+            "image": "tobilg/mesos-dns:0.6.0",
             "network": "HOST"
         },
         "type": "DOCKER"
