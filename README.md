@@ -40,7 +40,7 @@ curl -XPOST 'http://192.168.0.100:8080/v2/apps' -H 'Content-Type: application/js
     },
     "container": {
         "docker": {
-            "image": "tobilg/mesos-dns:v0.6.0",
+            "image": "tobilg/mesos-dns:v0.5.2",
             "network": "HOST"
         },
         "type": "DOCKER"
@@ -68,7 +68,7 @@ curl -XPOST 'http://192.168.0.100:8080/v2/apps' -d '{
     },
     "container": {
         "docker": {
-            "image": "tobilg/mesos-dns:v0.6.0",
+            "image": "tobilg/mesos-dns:v0.5.2",
             "network": "HOST"
         },
         "type": "DOCKER"
@@ -89,7 +89,7 @@ docker run -d \
   -e LOCAL_IP=$(/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}') \
   -e MESOS_DNS_EXTERNAL_SERVERS=8.8.8.8,8.8.4.4 \
   --name dns \
-  -t tobilg/mesos-dns
+  -t tobilg/mesos-dns:v0.5.2
 ```
 
 **Note:**
